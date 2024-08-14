@@ -1,12 +1,12 @@
 package sug
 
-func (s *Sudoku) MakeNewPuzzle() {
+func (s *Sudoku) MakeNewPuzzle(difficulty int) {
 	s.Puzzle = nil
 	s.Answers = nil
-	s.MakePuzzle()
+	s.MakePuzzle(difficulty)
 }
 
-func (s *Sudoku) MakePuzzle() {
+func (s *Sudoku) MakePuzzle(difficulty int) {
 	p := make([][]int, Row)
 	for i := range Row {
 		p[i] = make([]int, Col)
@@ -19,6 +19,6 @@ func (s *Sudoku) MakePuzzle() {
 	Shuffle(p)
 	s.Answers = append(s.Answers, p)
 	cp := CopySudoku(p)
-	RemoveCells(cp)
+	RemoveCells(cp, difficulty)
 	s.Puzzle = cp
 }

@@ -5,8 +5,6 @@ import (
 )
 
 var (
-	Row int = 9
-	Col int = 9
 	Ans [][][]int
 )
 

@@ -193,15 +193,13 @@ func IsNumbersValid(numbers []int) bool {
 	return true
 }
 
-func RemoveCells(puzzle [][]int) {
+func RemoveCells(puzzle [][]int, difficulty int) {
 	var r, c, l int
-	for {
+	for i := 0; i < (Row*Col)-difficulty; {
 		ans, err := Solve(puzzle)
-		if err != nil {
+		if err != nil || len(ans) > 1 {
 			puzzle[r][c] = l
-		} else if len(ans) > 1 {
-			puzzle[r][c] = l
-			break
+			i--
 		}
 	start:
 		r = rand.IntN(Row)
@@ -211,5 +209,6 @@ func RemoveCells(puzzle [][]int) {
 		}
 		l = puzzle[r][c]
 		puzzle[r][c] = 0
+		i++
 	}
 }
